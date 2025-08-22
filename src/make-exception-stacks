@@ -1,0 +1,53 @@
+#! /bin/sh
+
+cat <<EOF
+#include "stuff.h"
+#include <stdio.h>
+EOF
+
+write_functions ()
+{
+cat << EOF
+void test_cpp_testhrow_throw_$1(void)
+{
+  Foo foo(0);
+
+  try {
+    test_cpp_testhrow_throw_$2();
+    foo.testme();
+  } catch(...) {
+    if (global_blah)
+      fprintf(stderr, "Caught exception\n");
+  }
+}
+EOF
+}
+
+write_declarations ()
+{
+cat << EOF
+void test_cpp_testhrow_throw_$2(void);
+EOF
+}
+
+runthrough ()
+{
+depth=48
+while : ; do
+    newdepth=$(($depth - 1))
+    $1 $depth $newdepth
+
+    [ $depth = 1 ] && break
+    depth=$newdepth
+done
+}
+
+echo
+runthrough write_declarations
+echo
+runthrough write_functions
+echo
+
+cat <<EOF
+void test_cpp_testhrow_throw_0() { cpp_thrower(1); }
+EOF
