@@ -1,7 +1,7 @@
 # ulmbenchmarks
 Microbenchmarks that wrap around system calls and functions
 
-Here are results for FreeBSD-15-PRERELEASE and Linux Mint 22:
+```Here are results for FreeBSD-15-PRERELEASE and Linux Mint 22:
 
        1.5 nsec/call        1.6 user        0.0 sys: atoi
       76.5 nsec/call       76.5 user        0.0 sys: snprintf
@@ -82,8 +82,9 @@ All mprotect calls single:
   (47776 segfaults, 50452 writes, watch collision ratio)
      783.6 nsec/call        0.0 user      784.8 sys: madvise_randloc
       13.9 usec/call     1273.5 user    12668.9 sys: mprotect_randloc
+```
 
-
+```
 Linux Mint 22:
 
        1.2 nsec/call        1.2 user        0.0 sys: atoi
@@ -175,3 +176,4 @@ cpu  8523944 322766 3895010 28179152378 662246 0 420863 0 0 0
 cpu  8523949 322766 3895103 28179153850 662246 0 420867 0 0 0
     1270.3 nsec/call      108.3 user     1161.6 sys: madvise_randloc
       26.7 usec/call     1082.3 user    25271.0 sys: mprotect_randloc
+```
