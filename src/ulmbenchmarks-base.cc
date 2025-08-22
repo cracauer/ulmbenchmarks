@@ -94,8 +94,8 @@ void runtest(void (*func)(void), void (*funcs)(size_t size)
 {
   struct itimerval it;
   int n;
-  struct timeval beginning;
-  struct timeval end;
+  struct timespec beginning;
+  struct timespec end;
   struct rusage ru1;
   struct rusage ru2;
 
@@ -110,7 +110,7 @@ void runtest(void (*func)(void), void (*funcs)(size_t size)
     perror("getrusage");
     exit(2);
   }
-  if (gettimeofday(&beginning, NULL) == -1) {
+  if (clock_gettime(CLOCK_MONOTONIC, &beginning) == -1) {
     perror("gettimeofday1");
     exit(2);
   }
@@ -124,7 +124,7 @@ void runtest(void (*func)(void), void (*funcs)(size_t size)
   it.it_value.tv_usec = 0;
   setitimer(ITIMER_REAL, &it, NULL);
   stopit = 0;
-  if (gettimeofday(&end, NULL) == -1) {
+  if (clock_gettime(CLOCK_MONOTONIC, &end) == -1) {
     perror("gettimeofday2");
     exit(2);
   }
@@ -134,8 +134,8 @@ void runtest(void (*func)(void), void (*funcs)(size_t size)
   }
   
   double seconds_per_call = 
-    (double)end.tv_sec + (double)end.tv_usec / 1000000.0
-    - (double)beginning.tv_sec - (double)beginning.tv_usec / 1000000.0
+    (double)end.tv_sec + (double)end.tv_nsec / 1000000000.0
+    - (double)beginning.tv_sec - (double)beginning.tv_nsec / 1000000000.0
     //- (double)subtract_real_time / 1000000.0
     ;
   seconds_per_call /= (double) n;
