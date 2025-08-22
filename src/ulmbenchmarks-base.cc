@@ -758,7 +758,7 @@ void test_mprotect_randloc()
 }
 
 typedef struct ucontext os_context_t;
-typedef caddr_t os_vm_address_t;
+typedef void *os_vm_address_t;
 os_vm_address_t
 arch_get_bad_addr(int sig, siginfo_t *code, os_context_t *context)
 {
