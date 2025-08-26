@@ -1,6 +1,12 @@
 # ulmbenchmarks
 Microbenchmarks that wrap around system calls and functions
 
+Build and run: it is a plain POSIX program.  Just do a git clone and
+`make`.  If you run into portability problems please open a bug
+report.
+
+
+
 ```
 Here are results for FreeBSD-15-PRERELEASE and Linux Mint 22:
 
