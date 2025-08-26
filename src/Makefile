@@ -9,7 +9,7 @@ exception-stacks.cc: make-exception-stacks
 exception-stacks.o: exception-stacks.cc stuff.h
 	$(CXX) -fno-inline $(CFLAGS) -O3 -c $<
 
-foo.o: stuff.cc stuff.h
+stuff.o: stuff.cc stuff.h
 	$(CXX) -fno-inline $(CFLAGS) -O3 -c $<
 
 ulmbenchmarks-base: ulmbenchmarks-base.cc exception-stacks.o stuff.h stuff.o
